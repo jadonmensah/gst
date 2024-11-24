@@ -1,0 +1,88 @@
+### Signup
+POST http://localhost:8000/api/signup
+Content-Type: application/json
+
+{
+    "username": "test123", 
+    "password": "test123", 
+    "email": "test@example.com"
+}
+
+### Login
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "email": "test@example.com", 
+    "password": "test123"
+}
+
+### Test token
+GET http://localhost:8000/api/test-token/
+Content-Type: application/json
+Authorization: Token <ENTER_TOKEN_HERE>
+
+
+### Submit leaderboard time
+POST http://localhost:8000/api/group/submit-time
+Content-Type: application/json
+
+{
+    "token": "testtoken",
+    "group_ids": ["testgroup1", "testgroup2", "testgroup3"],
+}
+
+### Join group
+POST http://localhost:8000/api/group/join
+Content-Type: application/json
+
+{
+    "token": "testtoken",
+    "group_id": "testgroup1",
+}
+
+### Leave group
+POST http://localhost:8000/api/group/leave
+Content-Type: application/json
+
+{
+    "token": "testtoken",
+    "group_id": "testgroup1",
+}
+
+### Get leaderboard
+GET http://localhost:8000/api/group/leaderboard
+Content-Type: application/json
+
+{
+    "token": "testtoken",
+    "group_id": "testgroup1",
+}
+
+### Get group info
+GET http://localhost:8000/api/group/get-info
+Content-Type: application/json
+
+
+### Set group info (name, description)
+POST http://localhost:8000/api/group/set-info
+Content-Type: application/json
+
+{
+    "token": "testtoken",
+    "group_id": "testgroup1",
+    "name": "foo",
+    "description": "bar",
+}
+
+### Create new group
+POST http://localhost:8000/api/group/create
+Content-Type: application/json
+
+{
+    "token": "testtoken",
+    "name": "foo",
+    "description": "bar",
+}
+
+
