@@ -14,18 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import re_path
-from . import views
+from django.urls import path, include
+from .views import CreateUserView, ManageUserView, LoginView
+
+from knox import views as knox_views
 
 urlpatterns = [
-    re_path("api/login", views.login),
-    re_path("api/signup", views.signup),
-    re_path("api/test-token", views.test_token),
-    re_path("api/group/submit-time", views.submit_study_time),
-    re_path("api/group/join", views.join_group),
-    re_path("api/group/leave", views.leave_group),
-    re_path("api/group/leaderboard", views.get_leaderboard),
-    re_path("api/group/get-info", views.get_group_info),
-    re_path("api/group/set-info", views.set_group_info),
-    re_path("api/group/create", views.create_group),
+    path('api/auth/create/', CreateUserView.as_view(), name="create"),
+    path('api/auth/profile/', ManageUserView.as_view(), name='profile'),
+    path('api/auth/login/', LoginView.as_view(), name='knox_login'),
+    path('api/auth/logout/', knox_views.LogoutView.as_view(), name='knox_logout'),
+    path('api/auth/logoutall/', knox_views.LogoutAllView.as_view(), name='knox_logoutall'),
 ]
