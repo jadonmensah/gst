@@ -70,13 +70,14 @@ Content-Type: application/json
 }
 
 ### Create new group - not implemented
-POST http://localhost:8000/api/group/create
+POST http://localhost:8000/api/group/create/
 Content-Type: application/json
+Authorization: Token c522529df27b1cb90bfd228e3abee5ac2ffc717c7a415311162a1f4be4dfce89
 
 {
-    "token": "testtoken",
-    "name": "foo",
-    "description": "bar",
+    "name": "foo2",
+    "description": "bar"
+    
 }
 
 

@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from rest_framework import generics, authentication, permissions
 from rest_framework.response import Response
@@ -9,7 +10,7 @@ from knox.views import LoginView as KnoxLoginView
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
 
-from .serializers import UserSerializer, AuthSerializer
+from .serializers import UserSerializer, AuthSerializer, GroupSerializer
 
 class CreateUserView(generics.CreateAPIView):
     """
@@ -39,3 +40,9 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         """Retrieve and return authenticated user"""
         return self.request.user
+
+
+class CreateGroupView(LoginRequiredMixin, generics.CreateAPIView):
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    
