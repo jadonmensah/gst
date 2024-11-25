@@ -52,3 +52,11 @@ class GetGroupInfoView(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     def get_object(self):
         return Group.objects.get(pk=self.request.GET.get("id", "-1"))
+
+class SetGroupInfoView(generics.UpdateAPIView):
+    # TODO implement api/group/set-info/
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def put(self, request, format=None):
+        pass
