@@ -11,6 +11,7 @@ from knox.auth import TokenAuthentication
 from knox.models import AuthToken
 
 from .serializers import UserSerializer, AuthSerializer, GroupSerializer
+from .models import Group
 
 class CreateUserView(generics.CreateAPIView):
     """
@@ -42,7 +43,12 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
         return self.request.user
 
 
-class CreateGroupView(LoginRequiredMixin, generics.CreateAPIView):
+class CreateGroupView( generics.CreateAPIView):
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
     
+class GetGroupInfoView(generics.RetrieveAPIView):
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    def get_object(self):
+        return Group.objects.get(pk=self.request.GET.get("id", "-1"))

@@ -16,6 +16,23 @@ Content-Type: application/json
     "username": "test@example.com"
 }
 
+### Create new group - implemented - to test
+POST http://localhost:8000/api/group/create/
+Content-Type: application/json
+Authorization: Token c522529df27b1cb90bfd228e3abee5ac2ffc717c7a415311162a1f4be4dfce89
+
+{
+    "name": "fo2e2",
+    "description": "bar"
+    
+}
+
+### Get group info -  implemented - TODO non sequential ids
+GET http://localhost:8000/api/group/get-info?id=9
+Content-Type: application/json
+Authorization: Token c522529df27b1cb90bfd228e3abee5ac2ffc717c7a415311162a1f4be4dfce89
+
+
 
 ### Submit leaderboard time - not implemented
 POST http://localhost:8000/api/group/submit-time
@@ -53,9 +70,6 @@ Content-Type: application/json
     "group_id": "testgroup1",
 }
 
-### Get group info - not implemented
-GET http://localhost:8000/api/group/get-info
-Content-Type: application/json
 
 
 ### Set group info (name, description) - not implemented
@@ -69,15 +83,5 @@ Content-Type: application/json
     "description": "bar",
 }
 
-### Create new group - not implemented
-POST http://localhost:8000/api/group/create/
-Content-Type: application/json
-Authorization: Token c522529df27b1cb90bfd228e3abee5ac2ffc717c7a415311162a1f4be4dfce89
-
-{
-    "name": "foo2",
-    "description": "bar"
-    
-}
 
 
