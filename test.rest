@@ -39,9 +39,23 @@ Content-Type: application/json
 Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
 
 {
-    "name": "foo_updated",
-    "description": "bar_updated"
+    "name": "foo_updated_v2",
+    "description": "foobar"
 }
+
+### Join group -implemented
+PUT http://localhost:8000/api/group/join?id=1
+Content-Type: application/json
+Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
+
+
+### Leave group -  implemented 
+# FIXME csrf problems 
+DELETE  http://localhost:8000/api/group/leave?id=1
+Content-Type: application/json
+Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
+
+
 
 ### Submit leaderboard time - not implemented
 # TODO implement submit leaderboard
@@ -51,26 +65,6 @@ Content-Type: application/json
 {
     "token": "testtoken",
     "group_ids": ["testgroup1", "testgroup2", "testgroup3"],
-}
-
-### Join group - not implemented
-# TODO implement join group
-POST http://localhost:8000/api/group/join
-Content-Type: application/json
-
-{
-    "token": "testtoken",
-    "group_id": "testgroup1",
-}
-
-### Leave group - not implemented
-# TODO implement leave group
-POST http://localhost:8000/api/group/leave
-Content-Type: application/json
-
-{
-    "token": "testtoken",
-    "group_id": "testgroup1",
 }
 
 ### Get leaderboard - not implemented
