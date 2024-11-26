@@ -31,6 +31,7 @@ class GroupSerializer(serializers.ModelSerializer):
         members = self.context.get("request").user
         group_obj = Group.objects.create(**validated_data)
         group_obj.members.set([members])
+        print(group_obj.members.all())
         return group_obj
 
 class AuthSerializer(serializers.Serializer):

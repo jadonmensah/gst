@@ -59,4 +59,18 @@ class SetGroupInfoView(generics.UpdateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def put(self, request, format=None):
-        pass
+        serializer = GroupSerializer(data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        group_id = request.GET.get("id", "-1")
+        group = Group.objects.get(pk=group_id)
+        # check if user a member of the group
+        if request.user in group.members.all():
+            # if so allow their request
+            if "name" in serializer.validated_data.keys():
+                group.name = serializer.validated_data["name"]
+            
+            if "description" in serializer.validated_data.keys():
+                group.description = serializer.validated_data["description"]
+            return Response({"success": True})
+        print(group.members.all())
+        return Response({"success": False})
