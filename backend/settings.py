@@ -139,3 +139,5 @@ AUTHENTICATION_BACKENDS = (
     )
 
 APPEND_SLASH=False
+
+AUTH_USER_MODEL = 'backend.User' 

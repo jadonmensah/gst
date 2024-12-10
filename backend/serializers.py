@@ -1,9 +1,8 @@
 from rest_framework import serializers
 
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 
-from .models import Group
+from .models import Group, User
 
 class UserSerializer(serializers.ModelSerializer):
     """
@@ -26,7 +25,7 @@ class GroupSerializer(serializers.ModelSerializer):
     """
     class Meta(object):
         model = Group
-        fields = ["name", "description",]
+        fields = ["name", "description", "id"]
     def create(self, validated_data):
         members = self.context.get("request").user
         group_obj = Group.objects.create(**validated_data)

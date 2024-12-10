@@ -17,7 +17,8 @@ Including another URLconf
 from django.urls import path, include
 from .views import (CreateUserView, ManageUserView, LoginView, 
 CreateGroupView, GetGroupInfoView, SetGroupInfoView, JoinGroupView, 
-LeaveGroupView)
+LeaveGroupView, StartStudyTimerView, EndStudyTimerView, GetLeaderboardView,
+GetGroupsView,)
 
 from knox import views as knox_views
 
@@ -31,5 +32,9 @@ urlpatterns = [
     path("api/group/get-info", GetGroupInfoView.as_view(), name="get_group_info"),
     path("api/group/set-info", SetGroupInfoView.as_view(), name="set_group_info"),
     path("api/group/join", JoinGroupView.as_view(), name="join_group"),
-    path("api/group/leave", LeaveGroupView.as_view, name="leave_group")
+    path("api/group/leave", LeaveGroupView.as_view(), name="leave_group"),
+    path("api/group/leaderboard", GetLeaderboardView.as_view(), name="get_leaderboard"),
+    path("api/study/start", StartStudyTimerView.as_view(), name="start_study"),
+    path("api/study/end", EndStudyTimerView.as_view(), name="end_study"),
+    path("api/mygroups", GetGroupsView.as_view(), name="mygroups"),
 ]

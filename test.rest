@@ -19,63 +19,70 @@ Content-Type: application/json
 ### Create new group - implemented
 POST http://localhost:8000/api/group/create/
 Content-Type: application/json
-Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
+X-CSRFTOKEN: eQoCseoOG9BMCovMSpFZFthFcbG1uccN
+Authorization: Token 8cbda5ed58d88cd2eecbd86624f94ecc27e53e511cac47722671bce7b7636711
 
 {
-    "name": "fo2e2",
-    "description": "bar"
+    "name": "UUID Test Group",
+    "description": "please work"
     
 }
 
 ### Get group info -  implemented
-# TODO non-sequential ids
-GET http://localhost:8000/api/group/get-info?id=1
+GET http://localhost:8000/api/group/get-info?id=a37a0b1c49e143bdb5d6929d50130259
 Content-Type: application/json
-Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
+X-CSRFTOKEN: eQoCseoOG9BMCovMSpFZFthFcbG1uccN
+Authorization: Token 8cbda5ed58d88cd2eecbd86624f94ecc27e53e511cac47722671bce7b7636711
 
 ### Set group info (name, description) - implemented
-PUT http://localhost:8000/api/group/set-info?id=1
+PUT http://localhost:8000/api/group/set-info?id=a37a0b1c49e143bdb5d6929d50130259
 Content-Type: application/json
-Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
+X-CSRFTOKEN: eQoCseoOG9BMCovMSpFZFthFcbG1uccN
+Authorization: Token 8cbda5ed58d88cd2eecbd86624f94ecc27e53e511cac47722671bce7b7636711
+
 
 {
-    "name": "foo_updated_v2",
+    "name": "Testing...",
     "description": "foobar"
 }
 
 ### Join group -implemented
 PUT http://localhost:8000/api/group/join?id=1
 Content-Type: application/json
-Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
+X-CSRFTOKEN: ZI8qlE4Cer3juSgGaofwijZ6ylZlBZmc
+Authorization: Token d376de200b72f4c02fe7dd6ab5be4539139fe773e919e0e4c0e6fba9f6be6ce7
 
-
-### Leave group -  implemented 
-# FIXME csrf problems 
-DELETE  http://localhost:8000/api/group/leave?id=1
+### Leave group -  implemented, working
+# Note - remember to set X-CSRFTOKEN
+POST http://localhost:8000/api/group/leave?id=1
 Content-Type: application/json
-Authorization: Token b07fb01acd8d8a19da119469d4109c89e2182f32c1b31b25b6a1f075d6d3cf5a
+X-CSRFTOKEN: ZI8qlE4Cer3juSgGaofwijZ6ylZlBZmc
+Authorization: Token d376de200b72f4c02fe7dd6ab5be4539139fe773e919e0e4c0e6fba9f6be6ce7
 
-
-
-### Submit leaderboard time - not implemented
-# TODO implement submit leaderboard
-POST http://localhost:8000/api/group/submit-time
+### Start study timer - implemented
+POST http://localhost:8000/api/study/start
 Content-Type: application/json
+Authorization: Token 38ffb9234a3bb37e36ea3c79298eac257563f2899de824cc2b70eb75a996cba7
+X-CSRFTOKEN: iBMSNzogYmlFrPmjCC0XNH6P0p0nCrBK
 
-{
-    "token": "testtoken",
-    "group_ids": ["testgroup1", "testgroup2", "testgroup3"],
-}
-
-### Get leaderboard - not implemented
-# TODO implement get leaderboard
-GET http://localhost:8000/api/group/leaderboard
+### End study timer - implemented
+POST http://localhost:8000/api/study/end
 Content-Type: application/json
+Authorization: Token 38ffb9234a3bb37e36ea3c79298eac257563f2899de824cc2b70eb75a996cba7
+X-CSRFTOKEN: iBMSNzogYmlFrPmjCC0XNH6P0p0nCrBK
 
-{
-    "token": "testtoken",
-    "group_id": "testgroup1",
-}
+### Get leaderboard - implemented
+GET http://localhost:8000/api/group/leaderboard?id=1
+Content-Type: application/json
+Authorization: Token 38ffb9234a3bb37e36ea3c79298eac257563f2899de824cc2b70eb75a996cba7
+X-CSRFTOKEN: iBMSNzogYmlFrPmjCC0XNH6P0p0nCrBK
+
+
+### Get user's groups - implemented
+GET http://localhost:8000/api/mygroups
+Content-Type: application/json
+X-CSRFTOKEN: eQoCseoOG9BMCovMSpFZFthFcbG1uccN
+Authorization: Token 8cbda5ed58d88cd2eecbd86624f94ecc27e53e511cac47722671bce7b7636711
 
 
 
